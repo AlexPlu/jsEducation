@@ -1,50 +1,30 @@
 'use strict';
 
-var number = 5;
-var string = "Hello";
-var sym = Symbol();
-var boolean = true;
-null;
-undefined;
-var obj = {};
+let money = +prompt("Ваш бюджет на месяц?");
+let time = new Date(prompt("Введите дату в формате YYYY-MM-DD"));
 
-console.log(4/0);
-console.log('string'*9);
+let appData = {
+    budget: money,
+    timeData: time,
+    expenses: {},
+    optionalExpenses: null,
+    income: null,
+    savings: false
+}
 
-let something;
-console.log(something);
+console.log("budget(month) = " + appData.budget);
+console.log("date = " + appData.timeData.toDateString());
 
-let person = {
-    name: "John",
-    age: 25,
-    isMarried: false
-};
+let quantity = +prompt("Введите количество статей расходов в этом месяце");
 
-console.log(person.name);
+for (let i = 0; i < quantity; i++) {
+    let expenseName = prompt("Введите обязательную статью расходов в этом месяце");
+    let expenseCost = prompt("Во сколько обойдется?");
+    appData.expenses.expenseName = expenseCost;    
+}
 
-let arr = ['plum.png','orange.jpg','apple.bmp'];
+for (let key in appData.expenses) {
+    appData.budget = appData.budget - appData.expenses[key];
+}
 
-console.log(arr[1]);
-
-//alert("Hello World!");
-
-//let answer = +prompt("Are you 18?", "Yes");
-
-//console.log(answer);
-
-//console.log("arr" + " - object");
-//console.log(4 + " - object");
-
-let incr = 10,
-    decr = 10;
-
-console.log(incr++);
-console.log(decr--);
-
-console.log(5%2);
-console.log("2" === 2);
-
-let isChecked = true,
-    isClose = false;
-
-    console.log(isChecked || isClose);
+alert("Ваш бюджет на 1 день = " + appData.budget / 30);
